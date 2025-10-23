@@ -14,225 +14,319 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				box-sizing: border-box;
 			}
 
+			:root {
+				--primary: #1a73e8;
+				--primary-dark: #174ea6;
+				--secondary: #34a853;
+				--surface: #ffffff;
+				--surface-variant: #f8f9fa;
+				--on-surface: #202124;
+				--on-surface-variant: #5f6368;
+				--outline: #dadce0;
+			}
+
 			body {
-				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-				background: #000;
-				color: #fff;
-				overflow-x: hidden;
+				font-family: 'Google Sans', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				background: var(--surface);
+				color: var(--on-surface);
+				line-height: 1.6;
 			}
 
 			/* Hero Section */
 			.hero {
-				min-height: 100vh;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
+				background: linear-gradient(135deg, #1a73e8 0%, #4285f4 50%, #8ab4f8 100%);
+				color: white;
+				padding: 8rem 2rem 6rem 2rem;
 				text-align: center;
-				padding: 2rem;
-				background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
 				position: relative;
-				overflow: hidden;
 			}
 
-			.hero::before {
+			.hero::after {
 				content: '';
 				position: absolute;
-				top: 0;
+				bottom: 0;
 				left: 0;
 				right: 0;
-				bottom: 0;
-				background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
-				animation: pulse 4s ease-in-out infinite;
-			}
-
-			@keyframes pulse {
-				0%, 100% { opacity: 0.5; }
-				50% { opacity: 1; }
+				height: 100px;
+				background: linear-gradient(to bottom, transparent, var(--surface));
 			}
 
 			.hero-content {
+				max-width: 900px;
+				margin: 0 auto;
 				position: relative;
 				z-index: 1;
-				max-width: 1200px;
 			}
 
 			.hero h1 {
-				font-size: clamp(3rem, 8vw, 6rem);
-				font-weight: 900;
+				font-size: clamp(2.5rem, 6vw, 4rem);
+				font-weight: 500;
 				margin-bottom: 1.5rem;
-				line-height: 1.1;
-				background: linear-gradient(to right, #fff, #e0e7ff);
-				-webkit-background-clip: text;
-				-webkit-text-fill-color: transparent;
-				background-clip: text;
+				line-height: 1.2;
+				letter-spacing: -0.02em;
 			}
 
 			.hero p {
-				font-size: clamp(1.2rem, 3vw, 1.8rem);
+				font-size: clamp(1.1rem, 2.5vw, 1.5rem);
 				margin-bottom: 3rem;
-				color: rgba(255,255,255,0.9);
-				max-width: 800px;
-				margin-left: auto;
-				margin-right: auto;
+				opacity: 0.95;
+				font-weight: 400;
 			}
 
-			.cta-button {
+			.cta-primary {
 				display: inline-block;
-				padding: 1.2rem 3rem;
-				font-size: 1.2rem;
-				font-weight: 600;
-				color: #667eea;
-				background: #fff;
-				border-radius: 50px;
+				padding: 1rem 2.5rem;
+				font-size: 1.1rem;
+				font-weight: 500;
+				color: var(--primary);
+				background: white;
+				border-radius: 4px;
 				text-decoration: none;
-				transition: transform 0.3s ease, box-shadow 0.3s ease;
-				box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+				transition: all 0.2s ease;
+				box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+				margin-right: 1rem;
 			}
 
-			.cta-button:hover {
-				transform: translateY(-3px);
-				box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+			.cta-primary:hover {
+				box-shadow: 0 4px 6px rgba(0,0,0,0.16), 0 2px 4px rgba(0,0,0,0.23);
+				transform: translateY(-2px);
 			}
 
-			/* Features Section */
-			.features {
-				padding: 8rem 2rem;
-				background: linear-gradient(180deg, #000 0%, #1a1a2e 100%);
+			.cta-secondary {
+				display: inline-block;
+				padding: 1rem 2.5rem;
+				font-size: 1.1rem;
+				font-weight: 500;
+				color: white;
+				background: transparent;
+				border: 2px solid white;
+				border-radius: 4px;
+				text-decoration: none;
+				transition: all 0.2s ease;
 			}
 
-			.section-title {
+			.cta-secondary:hover {
+				background: rgba(255,255,255,0.1);
+			}
+
+			/* Main Content Container */
+			.container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 2rem;
+			}
+
+			/* Section Styles */
+			section {
+				padding: 5rem 0;
+			}
+
+			.section-header {
 				text-align: center;
-				font-size: clamp(2.5rem, 5vw, 4rem);
+				margin-bottom: 4rem;
+			}
+
+			.section-header h2 {
+				font-size: clamp(2rem, 4vw, 3rem);
+				font-weight: 500;
 				margin-bottom: 1rem;
-				font-weight: 800;
+				color: var(--on-surface);
 			}
 
-			.section-subtitle {
-				text-align: center;
-				font-size: 1.3rem;
-				color: rgba(255,255,255,0.7);
-				margin-bottom: 5rem;
+			.section-header p {
+				font-size: 1.25rem;
+				color: var(--on-surface-variant);
 				max-width: 700px;
-				margin-left: auto;
-				margin-right: auto;
+				margin: 0 auto;
 			}
 
+			/* Key Features Grid */
 			.features-grid {
 				display: grid;
 				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-				gap: 3rem;
-				max-width: 1400px;
-				margin: 0 auto;
+				gap: 2rem;
+				margin-top: 3rem;
 			}
 
 			.feature-card {
-				background: rgba(255,255,255,0.05);
-				border: 1px solid rgba(255,255,255,0.1);
-				border-radius: 20px;
-				padding: 3rem;
-				transition: transform 0.3s ease, background 0.3s ease;
+				background: var(--surface);
+				border: 1px solid var(--outline);
+				border-radius: 8px;
+				padding: 2rem;
+				transition: all 0.2s ease;
 			}
 
 			.feature-card:hover {
-				transform: translateY(-10px);
-				background: rgba(255,255,255,0.08);
+				box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+				transform: translateY(-4px);
 			}
 
 			.feature-icon {
-				font-size: 4rem;
+				width: 48px;
+				height: 48px;
+				background: linear-gradient(135deg, var(--primary), #4285f4);
+				border-radius: 8px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.5rem;
 				margin-bottom: 1.5rem;
-				display: block;
 			}
 
 			.feature-card h3 {
-				font-size: 1.8rem;
+				font-size: 1.5rem;
+				font-weight: 500;
 				margin-bottom: 1rem;
-				color: #fff;
+				color: var(--on-surface);
 			}
 
 			.feature-card p {
-				font-size: 1.1rem;
-				color: rgba(255,255,255,0.7);
+				font-size: 1rem;
+				color: var(--on-surface-variant);
 				line-height: 1.6;
+			}
+
+			/* Alternate Background */
+			.bg-variant {
+				background: var(--surface-variant);
+			}
+
+			/* Platform Capabilities */
+			.capabilities-list {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 1.5rem;
+				margin-top: 3rem;
+			}
+
+			.capability-item {
+				display: flex;
+				align-items: flex-start;
+				padding: 1.5rem;
+				background: var(--surface);
+				border-radius: 8px;
+				border-left: 4px solid var(--primary);
+			}
+
+			.capability-icon {
+				font-size: 1.5rem;
+				margin-right: 1rem;
+				flex-shrink: 0;
+			}
+
+			.capability-content h3 {
+				font-size: 1.25rem;
+				font-weight: 500;
+				margin-bottom: 0.5rem;
+				color: var(--on-surface);
+			}
+
+			.capability-content p {
+				font-size: 0.95rem;
+				color: var(--on-surface-variant);
 			}
 
 			/* Use Cases Section */
-			.use-cases {
-				padding: 8rem 2rem;
-				background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
-			}
-
 			.use-cases-grid {
 				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+				grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 				gap: 2rem;
-				max-width: 1400px;
-				margin: 0 auto;
+				margin-top: 3rem;
 			}
 
-			.use-case {
-				background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%);
-				border: 1px solid rgba(102,126,234,0.3);
-				border-radius: 15px;
-				padding: 2.5rem;
-				transition: transform 0.3s ease;
+			.use-case-card {
+				background: var(--surface);
+				border: 1px solid var(--outline);
+				border-radius: 8px;
+				overflow: hidden;
+				transition: all 0.2s ease;
 			}
 
-			.use-case:hover {
-				transform: scale(1.05);
+			.use-case-card:hover {
+				box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 			}
 
-			.use-case h3 {
-				font-size: 1.8rem;
+			.use-case-header {
+				background: linear-gradient(135deg, #e8f0fe, #f8f9fa);
+				padding: 2rem;
+				text-align: center;
+			}
+
+			.use-case-icon {
+				font-size: 3rem;
 				margin-bottom: 1rem;
-				color: #a5b4fc;
 			}
 
-			.use-case p {
-				color: rgba(255,255,255,0.8);
+			.use-case-body {
+				padding: 2rem;
+			}
+
+			.use-case-card h3 {
+				font-size: 1.5rem;
+				font-weight: 500;
+				margin-bottom: 1rem;
+				color: var(--on-surface);
+			}
+
+			.use-case-card p {
+				color: var(--on-surface-variant);
 				line-height: 1.6;
-				font-size: 1.1rem;
 			}
 
 			/* CTA Section */
 			.cta-section {
-				padding: 8rem 2rem;
-				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				background: linear-gradient(135deg, #1a73e8, #4285f4);
+				color: white;
 				text-align: center;
+				padding: 6rem 2rem;
+				margin-top: 4rem;
 			}
 
 			.cta-section h2 {
-				font-size: clamp(2.5rem, 5vw, 4rem);
-				margin-bottom: 2rem;
-				font-weight: 800;
+				font-size: clamp(2rem, 4vw, 3rem);
+				font-weight: 500;
+				margin-bottom: 1.5rem;
 			}
 
 			.cta-section p {
-				font-size: 1.5rem;
-				margin-bottom: 3rem;
-				color: rgba(255,255,255,0.9);
+				font-size: 1.25rem;
+				margin-bottom: 2.5rem;
+				opacity: 0.95;
 			}
 
 			/* Footer */
 			.footer {
+				background: var(--on-surface);
+				color: white;
 				padding: 3rem 2rem;
-				background: #000;
 				text-align: center;
-				color: rgba(255,255,255,0.5);
 			}
 
+			.footer p {
+				opacity: 0.7;
+				font-size: 0.95rem;
+			}
+
+			/* Responsive */
 			@media (max-width: 768px) {
-				.features-grid, .use-cases-grid {
-					grid-template-columns: 1fr;
-				}
-
 				.hero {
-					padding: 1rem;
+					padding: 4rem 1rem 3rem 1rem;
 				}
 
-				.features, .use-cases, .cta-section {
-					padding: 4rem 1rem;
+				section {
+					padding: 3rem 0;
+				}
+
+				.cta-primary, .cta-secondary {
+					display: block;
+					margin: 0.5rem 0;
+					width: 100%;
+				}
+
+				.features-grid,
+				.capabilities-list,
+				.use-cases-grid {
+					grid-template-columns: 1fr;
 				}
 			}
 		</style>
@@ -241,104 +335,203 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<!-- Hero Section -->
 		<section class="hero">
 			<div class="hero-content">
-				<h1>The Future of Reality is Here</h1>
-				<p>Experience the next dimension with cutting-edge XR technology that blends the physical and digital worlds seamlessly.</p>
-				<a href="#contact" class="cta-button">Get Started</a>
+				<h1>Build the future with XR Orbiter</h1>
+				<p>Create immersive experiences that blend the physical and digital worlds. Powered by cutting-edge spatial computing technology.</p>
+				<a href="#get-started" class="cta-primary">Get Started</a>
+				<a href="#learn-more" class="cta-secondary">Learn More</a>
 			</div>
 		</section>
 
-		<!-- Features Section -->
-		<section class="features">
-			<h2 class="section-title">Immersive Experiences</h2>
-			<p class="section-subtitle">Discover what makes our XR platform revolutionary</p>
+		<!-- Platform Overview -->
+		<section class="container">
+			<div class="section-header">
+				<h2>A unified platform for extended reality</h2>
+				<p>XR Orbiter brings together the tools, frameworks, and capabilities you need to build next-generation XR applications.</p>
+			</div>
 
 			<div class="features-grid">
 				<div class="feature-card">
-					<span class="feature-icon">🥽</span>
-					<h3>Mixed Reality</h3>
-					<p>Seamlessly blend digital content with your physical environment. Interact with virtual objects as if they're really there.</p>
+					<div class="feature-icon">📱</div>
+					<h3>Spatial Panels</h3>
+					<p>Create adaptive UI layouts with spatial panels that automatically adjust based on distance and context. Build familiar interfaces that work naturally in 3D space.</p>
 				</div>
 
 				<div class="feature-card">
-					<span class="feature-icon">🎮</span>
-					<h3>Spatial Computing</h3>
-					<p>Navigate infinite canvas experiences with intuitive gestures and natural interactions that feel effortless.</p>
+					<div class="feature-icon">🌐</div>
+					<h3>Immersive Spaces</h3>
+					<p>Design fully immersive environments or blend digital content with the real world. Switch seamlessly between Home Space and Full Space modes.</p>
 				</div>
 
 				<div class="feature-card">
-					<span class="feature-icon">🌐</span>
-					<h3>Connected Worlds</h3>
-					<p>Join immersive spaces where distance doesn't matter. Collaborate, create, and explore together in XR.</p>
+					<div class="feature-icon">🎨</div>
+					<h3>Material Design for XR</h3>
+					<p>Leverage familiar Material Design components that automatically adapt for XR, ensuring consistency and usability across all experiences.</p>
 				</div>
 
 				<div class="feature-card">
-					<span class="feature-icon">⚡</span>
-					<h3>Real-Time Performance</h3>
-					<p>Ultra-low latency and high-fidelity graphics deliver smooth, responsive experiences that feel natural.</p>
+					<div class="feature-icon">⚡</div>
+					<h3>High Performance</h3>
+					<p>Built on optimized rendering pipelines and low-latency tracking for smooth, responsive experiences that feel natural and comfortable.</p>
 				</div>
 
 				<div class="feature-card">
-					<span class="feature-icon">🔒</span>
-					<h3>Privacy First</h3>
-					<p>Your data stays yours. Built with security and privacy at the core of every feature and experience.</p>
+					<div class="feature-icon">🤲</div>
+					<h3>Hand Tracking</h3>
+					<p>Natural gesture-based interactions with precise hand tracking. Create intuitive interfaces that respond to natural hand movements.</p>
 				</div>
 
 				<div class="feature-card">
-					<span class="feature-icon">🎨</span>
-					<h3>Creative Freedom</h3>
-					<p>Powerful tools for creators to build, design, and share their own immersive experiences with the world.</p>
+					<div class="feature-icon">🔒</div>
+					<h3>Privacy by Design</h3>
+					<p>User privacy and data security built into every layer. Transparent controls give users full authority over their data and experiences.</p>
 				</div>
 			</div>
 		</section>
 
-		<!-- Use Cases Section -->
-		<section class="use-cases">
-			<h2 class="section-title">Endless Possibilities</h2>
-			<p class="section-subtitle">Transform how you work, learn, and play</p>
+		<!-- Platform Capabilities -->
+		<section class="bg-variant">
+			<div class="container">
+				<div class="section-header">
+					<h2>Powerful capabilities for developers</h2>
+					<p>Everything you need to build, test, and deploy XR applications</p>
+				</div>
+
+				<div class="capabilities-list">
+					<div class="capability-item">
+						<span class="capability-icon">🛠️</span>
+						<div class="capability-content">
+							<h3>Jetpack XR</h3>
+							<p>Modern development framework for building spatial experiences with familiar patterns and tools.</p>
+						</div>
+					</div>
+
+					<div class="capability-item">
+						<span class="capability-icon">🎯</span>
+						<div class="capability-content">
+							<h3>Scene Understanding</h3>
+							<p>Advanced perception APIs to understand and interact with the physical environment in real-time.</p>
+						</div>
+					</div>
+
+					<div class="capability-item">
+						<span class="capability-icon">📹</span>
+						<div class="capability-content">
+							<h3>180° & 360° Video</h3>
+							<p>Native support for stereoscopic immersive video with MV-HEVC encoding for high-quality playback.</p>
+						</div>
+					</div>
+
+					<div class="capability-item">
+						<span class="capability-icon">🎮</span>
+						<div class="capability-content">
+							<h3>3D Rendering</h3>
+							<p>Powerful graphics capabilities with support for custom 3D content, models, and real-time effects.</p>
+						</div>
+					</div>
+
+					<div class="capability-item">
+						<span class="capability-icon">🔊</span>
+						<div class="capability-content">
+							<h3>Spatial Audio</h3>
+							<p>Immersive soundscapes with positional audio that responds to user movement and environment.</p>
+						</div>
+					</div>
+
+					<div class="capability-item">
+						<span class="capability-icon">🧪</span>
+						<div class="capability-content">
+							<h3>XR Emulator</h3>
+							<p>Test and debug your applications without hardware using our comprehensive XR emulator.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Use Cases -->
+		<section class="container" id="learn-more">
+			<div class="section-header">
+				<h2>Built for every experience</h2>
+				<p>From productivity to entertainment, XR Orbiter powers diverse applications</p>
+			</div>
 
 			<div class="use-cases-grid">
-				<div class="use-case">
-					<h3>Enterprise & Collaboration</h3>
-					<p>Reimagine remote work with immersive meeting spaces, 3D data visualization, and spatial collaboration tools that bring teams together.</p>
+				<div class="use-case-card">
+					<div class="use-case-header">
+						<div class="use-case-icon">💼</div>
+					</div>
+					<div class="use-case-body">
+						<h3>Enterprise & Productivity</h3>
+						<p>Transform workflows with spatial collaboration tools, 3D data visualization, and immersive meeting spaces that bring remote teams together.</p>
+					</div>
 				</div>
 
-				<div class="use-case">
-					<h3>Education & Training</h3>
-					<p>Learn by doing in interactive 3D environments. From medical simulations to virtual field trips, make education unforgettable.</p>
+				<div class="use-case-card">
+					<div class="use-case-header">
+						<div class="use-case-icon">🎓</div>
+					</div>
+					<div class="use-case-body">
+						<h3>Education & Training</h3>
+						<p>Create interactive learning experiences with hands-on simulations, virtual field trips, and 3D educational content that makes complex concepts tangible.</p>
+					</div>
 				</div>
 
-				<div class="use-case">
-					<h3>Entertainment & Gaming</h3>
-					<p>Step inside your favorite games and experiences. Enjoy immersive storytelling that puts you at the center of the action.</p>
+				<div class="use-case-card">
+					<div class="use-case-header">
+						<div class="use-case-icon">🎮</div>
+					</div>
+					<div class="use-case-body">
+						<h3>Gaming & Entertainment</h3>
+						<p>Build immersive games and experiences with spatial gameplay mechanics, interactive storytelling, and engaging virtual worlds.</p>
+					</div>
 				</div>
 
-				<div class="use-case">
-					<h3>Design & Creation</h3>
-					<p>Sculpt, paint, and design in 3D space. Bring your creative visions to life with intuitive tools built for XR.</p>
+				<div class="use-case-card">
+					<div class="use-case-header">
+						<div class="use-case-icon">🏥</div>
+					</div>
+					<div class="use-case-body">
+						<h3>Healthcare & Wellness</h3>
+						<p>Develop medical training simulations, therapy applications, fitness experiences, and mindfulness tools for improved health outcomes.</p>
+					</div>
 				</div>
 
-				<div class="use-case">
-					<h3>Health & Wellness</h3>
-					<p>From fitness experiences to meditation spaces, use XR to enhance your physical and mental well-being.</p>
+				<div class="use-case-card">
+					<div class="use-case-header">
+						<div class="use-case-icon">🏗️</div>
+					</div>
+					<div class="use-case-body">
+						<h3>Design & Architecture</h3>
+						<p>Visualize designs at scale, collaborate in 3D space, and experience architectural concepts before they're built.</p>
+					</div>
 				</div>
 
-				<div class="use-case">
-					<h3>Shopping & Commerce</h3>
-					<p>Try before you buy with virtual showrooms. Visualize products in your space before making a purchase.</p>
+				<div class="use-case-card">
+					<div class="use-case-header">
+						<div class="use-case-icon">🛍️</div>
+					</div>
+					<div class="use-case-body">
+						<h3>Retail & Commerce</h3>
+						<p>Create virtual showrooms, enable try-before-you-buy experiences, and let customers visualize products in their own spaces.</p>
+					</div>
 				</div>
 			</div>
 		</section>
 
 		<!-- CTA Section -->
-		<section class="cta-section" id="contact">
-			<h2>Ready to Enter the Future?</h2>
-			<p>Join thousands of pioneers exploring the next dimension</p>
-			<a href="mailto:hello@xr-orbiter.com" class="cta-button">Contact Us</a>
+		<section class="cta-section" id="get-started">
+			<div class="container">
+				<h2>Start building with XR Orbiter</h2>
+				<p>Join developers creating the next generation of spatial computing experiences</p>
+				<a href="mailto:developers@xr-orbiter.com" class="cta-primary">Contact Developer Relations</a>
+			</div>
 		</section>
 
 		<!-- Footer -->
 		<footer class="footer">
-			<p>&copy; 2025 XR Orbiter. All rights reserved.</p>
+			<div class="container">
+				<p>&copy; 2025 XR Orbiter. Built with spatial computing technology.</p>
+			</div>
 		</footer>
 	</body>
 </html>
