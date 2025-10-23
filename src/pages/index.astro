@@ -1,7 +1,5 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
@@ -9,42 +7,338 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+				background: #000;
+				color: #fff;
+				overflow-x: hidden;
+			}
+
+			/* Hero Section */
+			.hero {
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+				padding: 2rem;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+				position: relative;
+				overflow: hidden;
+			}
+
+			.hero::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+				animation: pulse 4s ease-in-out infinite;
+			}
+
+			@keyframes pulse {
+				0%, 100% { opacity: 0.5; }
+				50% { opacity: 1; }
+			}
+
+			.hero-content {
+				position: relative;
+				z-index: 1;
+				max-width: 1200px;
+			}
+
+			.hero h1 {
+				font-size: clamp(3rem, 8vw, 6rem);
+				font-weight: 900;
+				margin-bottom: 1.5rem;
+				line-height: 1.1;
+				background: linear-gradient(to right, #fff, #e0e7ff);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+			}
+
+			.hero p {
+				font-size: clamp(1.2rem, 3vw, 1.8rem);
+				margin-bottom: 3rem;
+				color: rgba(255,255,255,0.9);
+				max-width: 800px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			.cta-button {
+				display: inline-block;
+				padding: 1.2rem 3rem;
+				font-size: 1.2rem;
+				font-weight: 600;
+				color: #667eea;
+				background: #fff;
+				border-radius: 50px;
+				text-decoration: none;
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+				box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+			}
+
+			.cta-button:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+			}
+
+			/* Features Section */
+			.features {
+				padding: 8rem 2rem;
+				background: linear-gradient(180deg, #000 0%, #1a1a2e 100%);
+			}
+
+			.section-title {
+				text-align: center;
+				font-size: clamp(2.5rem, 5vw, 4rem);
+				margin-bottom: 1rem;
+				font-weight: 800;
+			}
+
+			.section-subtitle {
+				text-align: center;
+				font-size: 1.3rem;
+				color: rgba(255,255,255,0.7);
+				margin-bottom: 5rem;
+				max-width: 700px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			.features-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 3rem;
+				max-width: 1400px;
+				margin: 0 auto;
+			}
+
+			.feature-card {
+				background: rgba(255,255,255,0.05);
+				border: 1px solid rgba(255,255,255,0.1);
+				border-radius: 20px;
+				padding: 3rem;
+				transition: transform 0.3s ease, background 0.3s ease;
+			}
+
+			.feature-card:hover {
+				transform: translateY(-10px);
+				background: rgba(255,255,255,0.08);
+			}
+
+			.feature-icon {
+				font-size: 4rem;
+				margin-bottom: 1.5rem;
+				display: block;
+			}
+
+			.feature-card h3 {
+				font-size: 1.8rem;
+				margin-bottom: 1rem;
+				color: #fff;
+			}
+
+			.feature-card p {
+				font-size: 1.1rem;
+				color: rgba(255,255,255,0.7);
+				line-height: 1.6;
+			}
+
+			/* Use Cases Section */
+			.use-cases {
+				padding: 8rem 2rem;
+				background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+			}
+
+			.use-cases-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+				gap: 2rem;
+				max-width: 1400px;
+				margin: 0 auto;
+			}
+
+			.use-case {
+				background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%);
+				border: 1px solid rgba(102,126,234,0.3);
+				border-radius: 15px;
+				padding: 2.5rem;
+				transition: transform 0.3s ease;
+			}
+
+			.use-case:hover {
+				transform: scale(1.05);
+			}
+
+			.use-case h3 {
+				font-size: 1.8rem;
+				margin-bottom: 1rem;
+				color: #a5b4fc;
+			}
+
+			.use-case p {
+				color: rgba(255,255,255,0.8);
+				line-height: 1.6;
+				font-size: 1.1rem;
+			}
+
+			/* CTA Section */
+			.cta-section {
+				padding: 8rem 2rem;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				text-align: center;
+			}
+
+			.cta-section h2 {
+				font-size: clamp(2.5rem, 5vw, 4rem);
+				margin-bottom: 2rem;
+				font-weight: 800;
+			}
+
+			.cta-section p {
+				font-size: 1.5rem;
+				margin-bottom: 3rem;
+				color: rgba(255,255,255,0.9);
+			}
+
+			/* Footer */
+			.footer {
+				padding: 3rem 2rem;
+				background: #000;
+				text-align: center;
+				color: rgba(255,255,255,0.5);
+			}
+
+			@media (max-width: 768px) {
+				.features-grid, .use-cases-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.hero {
+					padding: 1rem;
+				}
+
+				.features, .use-cases, .cta-section {
+					padding: 4rem 1rem;
+				}
+			}
+		</style>
 	</head>
 	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
+		<!-- Hero Section -->
+		<section class="hero">
+			<div class="hero-content">
+				<h1>The Future of Reality is Here</h1>
+				<p>Experience the next dimension with cutting-edge XR technology that blends the physical and digital worlds seamlessly.</p>
+				<a href="#contact" class="cta-button">Get Started</a>
+			</div>
+		</section>
+
+		<!-- Features Section -->
+		<section class="features">
+			<h2 class="section-title">Immersive Experiences</h2>
+			<p class="section-subtitle">Discover what makes our XR platform revolutionary</p>
+
+			<div class="features-grid">
+				<div class="feature-card">
+					<span class="feature-icon">🥽</span>
+					<h3>Mixed Reality</h3>
+					<p>Seamlessly blend digital content with your physical environment. Interact with virtual objects as if they're really there.</p>
+				</div>
+
+				<div class="feature-card">
+					<span class="feature-icon">🎮</span>
+					<h3>Spatial Computing</h3>
+					<p>Navigate infinite canvas experiences with intuitive gestures and natural interactions that feel effortless.</p>
+				</div>
+
+				<div class="feature-card">
+					<span class="feature-icon">🌐</span>
+					<h3>Connected Worlds</h3>
+					<p>Join immersive spaces where distance doesn't matter. Collaborate, create, and explore together in XR.</p>
+				</div>
+
+				<div class="feature-card">
+					<span class="feature-icon">⚡</span>
+					<h3>Real-Time Performance</h3>
+					<p>Ultra-low latency and high-fidelity graphics deliver smooth, responsive experiences that feel natural.</p>
+				</div>
+
+				<div class="feature-card">
+					<span class="feature-icon">🔒</span>
+					<h3>Privacy First</h3>
+					<p>Your data stays yours. Built with security and privacy at the core of every feature and experience.</p>
+				</div>
+
+				<div class="feature-card">
+					<span class="feature-icon">🎨</span>
+					<h3>Creative Freedom</h3>
+					<p>Powerful tools for creators to build, design, and share their own immersive experiences with the world.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Use Cases Section -->
+		<section class="use-cases">
+			<h2 class="section-title">Endless Possibilities</h2>
+			<p class="section-subtitle">Transform how you work, learn, and play</p>
+
+			<div class="use-cases-grid">
+				<div class="use-case">
+					<h3>Enterprise & Collaboration</h3>
+					<p>Reimagine remote work with immersive meeting spaces, 3D data visualization, and spatial collaboration tools that bring teams together.</p>
+				</div>
+
+				<div class="use-case">
+					<h3>Education & Training</h3>
+					<p>Learn by doing in interactive 3D environments. From medical simulations to virtual field trips, make education unforgettable.</p>
+				</div>
+
+				<div class="use-case">
+					<h3>Entertainment & Gaming</h3>
+					<p>Step inside your favorite games and experiences. Enjoy immersive storytelling that puts you at the center of the action.</p>
+				</div>
+
+				<div class="use-case">
+					<h3>Design & Creation</h3>
+					<p>Sculpt, paint, and design in 3D space. Bring your creative visions to life with intuitive tools built for XR.</p>
+				</div>
+
+				<div class="use-case">
+					<h3>Health & Wellness</h3>
+					<p>From fitness experiences to meditation spaces, use XR to enhance your physical and mental well-being.</p>
+				</div>
+
+				<div class="use-case">
+					<h3>Shopping & Commerce</h3>
+					<p>Try before you buy with virtual showrooms. Visualize products in your space before making a purchase.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA Section -->
+		<section class="cta-section" id="contact">
+			<h2>Ready to Enter the Future?</h2>
+			<p>Join thousands of pioneers exploring the next dimension</p>
+			<a href="mailto:hello@xr-orbiter.com" class="cta-button">Contact Us</a>
+		</section>
+
+		<!-- Footer -->
+		<footer class="footer">
+			<p>&copy; 2025 XR Orbiter. All rights reserved.</p>
+		</footer>
 	</body>
 </html>
